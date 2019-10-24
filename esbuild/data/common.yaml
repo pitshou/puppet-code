@@ -1,1 +1,32 @@
 ---
+#variables for service class
+esbuild::packagename: 'elasticsearch'
+esbuild::packagestate: 'present'
+#esbuild::packagestate: 'purged'
+
+#variables for service class
+esbuild::servicename: 'elasticsearch'
+esbuild::servicestate: 'running'
+esbuild::serviceonboot: true
+esbuild::servicerestart: true
+
+#variables for config class
+esbuild::clustername: 'myapp'
+esbuild::pathdata: ''
+esbuild::path.logs: ''
+
+#variables for template use
+esbuild::clustername: 'my-app'
+esbuild::pathdata: '/opt/elastic/data'
+esbuild::pathlogs: '/opt/elastic/logs'
+esbuild::bootstrapmemorylock: true
+esbuild::bootstrapsystemcallfilter: false
+esbuild::networkhost: '_site_'
+esbuild::port: '9200'
+esbuild::discoveryzenpingunicasthosts: '["pitshou4c"]'
+esbuild::discoveryzenminimummasternodes: '1'
+esbuild::actiondestructiverequiresname: true
+esbuild::nodeattravailabilityzone: 'sc1'
+esbuild::nodeattrrackid: 'dfw-sc1c07'
+esbuild::clusterroutingallocationawarenessattributes: 'availabilityzone, rack_id' 
+

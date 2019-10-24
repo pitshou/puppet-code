@@ -6,7 +6,7 @@
 #   include esbuild::install
 class esbuild::install {
   package { 'install_elasticsearch':
-    name    => 'elasticsearch',
-    ensure  => 'present',
+    name    => $esbuild::packagename,
+    ensure  => $esbuild::packagestate,
   }
 }

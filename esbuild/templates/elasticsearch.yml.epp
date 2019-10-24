@@ -1,0 +1,17 @@
+cluster.name: <%= $esbuild::clustername %>
+node.name: <%= $facts[fqdn]  %> 
+#node.master: 
+#node.data: 
+#node.ml: false
+path.data: <%= $esbuild::pathdata  %> 
+path.logs: <%= $esbuild::pathlogs %>
+bootstrap.memory_lock: <%= $esbuild::bootstrapmemorylock %>
+bootstrap.system_call_filter: <%= $esbuild::bootstrapsystemcallfilter %>
+network.host: <%= $esbuild::networkhost %>
+http.port: <%= $esbuild::port %>
+discovery.zen.ping.unicast.hosts: <%= $esbuild::discoveryzenpingunicasthosts %>
+discovery.zen.minimum_master_nodes: <%= $esbuild::discoveryzenminimummasternodes %>
+action.destructive_requires_name: <%= $esbuild::actiondestructiverequiresname %>
+node.attr.availabilityzone: <%= $esbuild::nodeattravailabilityzone %>
+node.attr.rack_id: <%= $esbuild::nodeattrrackid %>
+cluster.routing.allocation.awareness.attributes: <%= $esbuild::clusterroutingallocationawarenessattributes %>
