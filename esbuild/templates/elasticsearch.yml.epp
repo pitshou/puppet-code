@@ -1,17 +1,35 @@
+# This file is being managed by Puppet. PLEASE DO NOT MODIFY IT
 cluster.name: <%= $esbuild::clustername %>
 node.name: <%= $facts[fqdn]  %> 
-#node.master: 
-#node.data: 
-#node.ml: false
+node.attr.rack_id: <%= $esbuild::nodeattrrackid %>
+node.attr.availabilityzone: <%= $esbuild::nodeattravailabilityzone %>
+cluster.routing.allocation.awareness.attributes: <%= $esbuild::clusterroutingallocationawarenessattributes %>
 path.data: <%= $esbuild::pathdata  %> 
 path.logs: <%= $esbuild::pathlogs %>
 bootstrap.memory_lock: <%= $esbuild::bootstrapmemorylock %>
 bootstrap.system_call_filter: <%= $esbuild::bootstrapsystemcallfilter %>
 network.host: <%= $esbuild::networkhost %>
 http.port: <%= $esbuild::port %>
-discovery.zen.ping.unicast.hosts: <%= $esbuild::discoveryzenpingunicasthosts %>
-discovery.zen.minimum_master_nodes: <%= $esbuild::discoveryzenminimummasternodes %>
+discovery.seed_hosts: <%= $esbuild::mymasters %> 
+cluster.initial_master_nodes: <%= $esbuild::mymasters %>
 action.destructive_requires_name: <%= $esbuild::actiondestructiverequiresname %>
-node.attr.availabilityzone: <%= $esbuild::nodeattravailabilityzone %>
-node.attr.rack_id: <%= $esbuild::nodeattrrackid %>
-cluster.routing.allocation.awareness.attributes: <%= $esbuild::clusterroutingallocationawarenessattributes %>
+<% if $facts['fqdn']  =~ 'pitshou*' { -%> 
+node.master: true
+node.data: false
+node.ingest: false
+node.ml: false
+<% } -%>
+<% elsif $facts['fqdn']  =~ 'prodesd*' { -%>
+node.master: false
+node.data: true
+node.ingest: false
+node.ml: false
+<% } -%>
+<% elsif $facts['fqdn']  =~ 'prodeml*' { -%>
+node.master: false
+node.data: false
+node.ingest: false
+node.ml: true
+<% } -%>
+#discovery.zen.ping.unicast.hosts: <%= $esbuild::discoveryzenpingunicasthosts %>
+#discovery.zen.minimum_master_nodes: <%= $esbuild::discoveryzenminimummasternodes %>

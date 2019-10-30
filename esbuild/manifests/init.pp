@@ -12,24 +12,38 @@ class esbuild (
   Boolean $serviceonboot,
   Boolean $servicerestart,
   String  $clustername,
+  String  $nodeattrrackid,
+  String  $nodeattravailabilityzone,
+  String  $clusterroutingallocationawarenessattributes,
   String  $pathdata,
   String  $pathlogs,
   Boolean $bootstrapmemorylock,
   Boolean $bootstrapsystemcallfilter,
   String  $networkhost,
   String  $port,
-  String  $discoveryzenpingunicasthosts,
-  String  $discoveryzenminimummasternodes,
+  String  $mymasters,
+  String  $elasticsystemdpath,
+  String  $ensuredirectorystate,
+  String  $sourceoftheoverride,
+  String  $elasticsystemdcopyfilestate,
+  String  $elasticsystemdoverridepath,
+  String  $systemdreloadcommand,
+  Boolean $systemdrestart,
   Boolean $actiondestructiverequiresname,
-  String  $nodeattravailabilityzone,
-  String  $nodeattrrackid,
-  String  $clusterroutingallocationawarenessattributes
 ) {
   contain esbuild::install
+  contain esbuild::configsystemd
+  contain esbuild::copysystemdoverride
+  contain esbuild::systemdreload
+  contain esbuild::configjvmoptions
   contain esbuild::config
   contain esbuild::service
 
   Class['::esbuild::install']
+  -> Class['::esbuild::configsystemd']
+  -> Class['::esbuild::copysystemdoverride']
+  ~> Class['::esbuild::systemdreload']
+  -> Class['::esbuild::configjvmoptions']
   -> Class['::esbuild::config']
   ~> Class['::esbuild::service']
 }
