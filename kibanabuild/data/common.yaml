@@ -1,0 +1,23 @@
+---
+#variables for the install_kibana class
+kibanabuild::packagename: 'kibana-7.4.1'
+kibanabuild::packagestate: 'present'
+
+#variables for the service_kibana class
+kibanabuild::servicename: 'kibana'
+kibanabuild::servicestate: 'running'
+kibanabuild::serviceonboot: true
+kibanabuild::servicerestart: true
+
+#variables for the config_kibana class
+kibanabuild::serverport: '5601'
+kibanabuild::elasticsearchhosts: '["http://pitshou2c:9200"]'
+kibanabuild::kibanaindex: '.kibana'
+kibanabuild::kibanadefaultappid: '"discover"'
+kibanabuild::elasticusername: ''
+kibanabuild::elasticpassword: ''
+kibanabuild::elasticsearchpingtimeout: '1500'
+kibanabuild::elasticsearchrequesttimeout: '3000'
+kibanabuild::elasticsearchshardtimeout: '3000'
+kibanabuild::elasticsearchstartuptimeout: '5000'
+kibanabuild::loggingdest: '/opt/kibana/logs/kibana.log'

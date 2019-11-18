@@ -1,0 +1,13 @@
+### This file is being managed by puppet. Please don't modify manually ###
+
+server.port: <%= $kibanabuild::serverport %>
+server.host: <%= $facts['fqdn'] %>
+server.name: <%= $facts['fqdn'] %>
+elasticsearch.hosts: <%= $kibanabuild::elasticsearchhosts %>
+kibana.index: <%= $kibanabuild::kibanaindex %>
+kibana.defaultAppId: <%= $kibanabuild::kibanadefaultappid %>
+elasticsearch.pingTimeout: <%= $kibanabuild::elasticsearchpingtimeout %>
+elasticsearch.requestTimeout: <%= $kibanabuild::elasticsearchrequesttimeout %>
+elasticsearch.shardTimeout: <%= $kibanabuild::elasticsearchshardtimeout %>
+elasticsearch.startupTimeout: <%= $kibanabuild::elasticsearchstartuptimeout %>
+logging.dest: <%= $kibanabuild::loggingdest %>
